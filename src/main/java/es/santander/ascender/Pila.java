@@ -1,6 +1,6 @@
 package es.santander.ascender;
 
-public class Cola {
+public class Pila {
 
     private Nodo raiz;
 
@@ -8,17 +8,20 @@ public class Cola {
         if (raiz == null) {
             this.raiz = new Nodo(mensaje);
         } else {
-            this.raiz.pedirLaVez(mensaje);
+            Nodo nodo = new Nodo(mensaje);
+            nodo.setAnterior(raiz);
+            raiz = nodo;
         }
     }
 
     public String get() {
         if (raiz == null) {
             return null;
-        } else {
-            String valor = raiz.getValor();
-            raiz = raiz.getSiguiente();
-            return valor;
-        }
+        } 
+        String valor = raiz.getValor();
+        raiz = raiz.getAnterior();
+        System.gc();
+        return valor;
+
     }
 }

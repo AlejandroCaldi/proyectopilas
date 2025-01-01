@@ -5,27 +5,27 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-public class ColaTest {
+public class pilaTest {
     @Test
     void testAdd() {
-        Cola cola = new Cola();
+        Pila pila = new Pila();
 
 
-        cola.add("primera");
-        cola.add("segunda");
-        cola.add("tercera");
+        pila.add("primera");
+        pila.add("segunda");
+        pila.add("tercera");
 
         // String siguiente = null;
         // int cuenta = 0;
-        // while((siguiente = cola.get()) != null) {
+        // while((siguiente = pila.get()) != null) {
         //     cuenta++;
         // }
         // assertEquals(3, cuenta);
 
-        assertEquals("primera", cola.get());
-        assertEquals("segunda", cola.get());
-        assertEquals("tercera", cola.get());
-        assertNull(cola.get());
+        assertEquals("tercera", pila.get());
+        assertEquals("segunda", pila.get());
+        assertEquals("primera", pila.get());
+        assertNull(pila.get());
 
     }
 }

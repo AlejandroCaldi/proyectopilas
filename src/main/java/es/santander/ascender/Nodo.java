@@ -2,17 +2,17 @@ package es.santander.ascender;
 
 public class Nodo {
     private String valor;
-    private Nodo siguiente;
+    private Nodo anterior;
 
     public Nodo(String valor) {
         this.valor = valor;
     }
 
     public void pedirLaVez(String mensaje) {
-        if (siguiente == null) {
-            siguiente = new Nodo(mensaje);
+        if (anterior == null) {
+            anterior = new Nodo(mensaje);
         } else {
-            this.siguiente.pedirLaVez(mensaje);
+            this.anterior.pedirLaVez(mensaje);
         }
     }
 
@@ -22,10 +22,10 @@ public class Nodo {
     public void setValor(String valor) {
         this.valor = valor;
     }
-    public Nodo getSiguiente() {
-        return siguiente;
+    public Nodo getAnterior() {
+        return anterior;
     }
-    public void setSiguiente(Nodo siguiente) {
-        this.siguiente = siguiente;
+    public void setAnterior(Nodo anterior) {
+        this.anterior = anterior;
     }
 }
