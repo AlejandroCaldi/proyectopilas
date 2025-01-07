@@ -91,8 +91,9 @@ public class ListaEncadenadaTest {
         lista.listar();
         assertEquals("primera", lista.pollPrimero());
         assertEquals("segunda", lista.pollPrimero());
-        assertEquals("tercera", lista.pollPrimero());
         assertEquals("segunda2", lista.pollPrimero());
+        assertEquals("tercera", lista.pollPrimero());
+
         assertNull(lista.pollPrimero());
 
     }
@@ -100,14 +101,12 @@ public class ListaEncadenadaTest {
     @Test
     void testAddIndexNegativo() throws Exception {
     
-        // lista.addIndex(2, "segunda2");
+        Exception exception = assertThrows(Exception.class, () -> {
+            lista.addIndex(-1, "segunda5");
+        });
 
-        // lista.listar();
-        // assertEquals("primera", lista.pollPrimero());
-        // assertEquals("segunda", lista.pollPrimero());
-        // assertEquals("tercera", lista.pollPrimero());
-        // assertEquals("segunda2", lista.pollPrimero());
-        // assertNull(lista.pollPrimero());
+        String texto = exception.getMessage();
+        assertTrue(texto.contains("Fuera de indice"));
 
     }
 
@@ -150,8 +149,20 @@ public class ListaEncadenadaTest {
         assertNull(lista.pollPrimero());
     }
 
-    // Agregar texts de negativos y último valor de indice
+    @Test
+    void testBorrarIndexNegativo() throws Exception {
     
+        Exception exception = assertThrows(Exception.class, () -> {
+            lista.borrarIndex(-5);
+        });
+
+        String texto = exception.getMessage();
+        assertTrue(texto.contains("Fuera de indice"));
+
+        lista.listar();
+    }
+    // Agregar test de último valor de indice
+
     @Test
     void testBorrarIndexFueraRango() throws Exception {
     

@@ -32,6 +32,11 @@ public class ListaEncadenada {
 
     public void addIndex(int index, String mensaje) throws Exception {
         Nodo siguienteViejo = new Nodo("");
+
+        if (index < 0) {
+            throw new Exception("Fuera de indice");
+
+        }
         if (index == 0) {
             this.addPrimero(mensaje);
 
@@ -39,28 +44,38 @@ public class ListaEncadenada {
 
             int contador = 1;
             Nodo nodo = raiz;
-            
+
             while (contador <= index) {
                 nodo = nodo.getSiguiente();
-                if (nodo == null) {
-                    throw new Exception("Fuera de indice");
-                } 
-                siguienteViejo = nodo.getSiguiente();
-                contador++;
+                if (nodo == cima) {
+                    this.addUltimo(mensaje);
+                    break;
+                } else {
+                    if (nodo == null) {
+                        throw new Exception("Fuera de indice");
+                    }
+                    siguienteViejo = nodo.getSiguiente();
+                    contador++;
+                }
             }
-            Nodo nuevoNodo = new Nodo(mensaje);
-            nuevoNodo.setAnterior(nodo);
-            nuevoNodo.setSiguiente(siguienteViejo);
+            if (nodo != cima) {
+                Nodo nuevoNodo = new Nodo(mensaje);
+                nuevoNodo.setAnterior(nodo);
+                nuevoNodo.setSiguiente(siguienteViejo);
 
-            nodo.setSiguiente(nuevoNodo);
-            nuevoNodo.getSiguiente().setAnterior(nuevoNodo);
-
+                nodo.setSiguiente(nuevoNodo);
+                nuevoNodo.getSiguiente().setAnterior(nuevoNodo);
+            }
         }
     }
 
     public void borrarIndex(int index) throws Exception {
         Nodo siguienteViejo = new Nodo("");
         Nodo anteriorViejo = new Nodo("");
+
+        if (index < 0) {
+            throw new Exception("Fuera de indice");
+        }
         if (index == 0) {
             this.peekPrimero();
 
@@ -68,7 +83,7 @@ public class ListaEncadenada {
 
             int contador = 1;
             Nodo nodo = raiz;
-            
+
             while (contador <= index) {
                 nodo = nodo.getSiguiente();
                 if (nodo == null) {
@@ -81,16 +96,16 @@ public class ListaEncadenada {
 
             nodo.getAnterior().setSiguiente(siguienteViejo);
             nodo.getSiguiente().setAnterior(anteriorViejo);
-            //System.gc(); No recomendable. 
+            // System.gc(); No recomendable.
 
         }
     }
 
     public void borrarLista() {
-        this.cima = null; 
+        this.cima = null;
         this.raiz = null;
-        //System.gc(); No recomendable.
-        
+        // System.gc(); No recomendable.
+
     }
 
     public String pollPrimero() { // el método estandar de java usa Poll como lectura e inmediato borrado
@@ -99,7 +114,7 @@ public class ListaEncadenada {
         }
         String valor = raiz.getValor();
         raiz = raiz.getSiguiente();
-        //System.gc(); remover.
+        // System.gc(); remover.
         return valor;
     }
 
@@ -116,7 +131,7 @@ public class ListaEncadenada {
         }
         String valor = cima.getValor();
         cima = cima.getAnterior();
-        //System.gc(); remover.
+        // System.gc(); remover.
         return valor;
     }
 
@@ -130,7 +145,7 @@ public class ListaEncadenada {
     public void listar() {
 
         Nodo nodo = raiz;
-        while (nodo!=null) {
+        while (nodo != null) {
             System.out.println(nodo.getValor());
             nodo = nodo.getSiguiente();
         }
@@ -139,7 +154,7 @@ public class ListaEncadenada {
     public int tamanoLista() {
         int contador = 0;
         Nodo nodo = raiz;
-        while (nodo!=null) {
+        while (nodo != null) {
             contador++;
             nodo = nodo.getSiguiente();
         }
