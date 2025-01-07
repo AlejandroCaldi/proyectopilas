@@ -5,17 +5,32 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class listaTest {
-    @Test
-    void testAddUltimoPollUltimo() {
-        ListaEncadenada lista = new ListaEncadenada();
+public class listaTestEncadenada {
+
+    ListaEncadenada lista = new ListaEncadenada();
+    ListaEncadenada listaInvertida = new ListaEncadenada();
+
+    @BeforeEach
+    public void setUp() {
+        
 
         lista.addUltimo("primera");
         lista.addUltimo("segunda");
         lista.addUltimo("tercera");
 
+        listaInvertida.addPrimero("primera");
+        listaInvertida.addPrimero("segunda");
+        listaInvertida.addPrimero("tercera");
+        
+    }
+
+
+    @Test
+    public void testAddUltimoPollUltimo() {
+    
         assertEquals("tercera", lista.pollUltimo());
         assertEquals("segunda", lista.pollUltimo());
         assertEquals("primera", lista.pollUltimo());
@@ -25,12 +40,7 @@ public class listaTest {
 
     @Test
     void testAddUltimoypollPrimero() {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addUltimo("primera");
-        lista.addUltimo("segunda");
-        lista.addUltimo("tercera");
-
+    
         assertEquals("primera", lista.pollPrimero());
         assertEquals("segunda", lista.pollPrimero());
         assertEquals("tercera", lista.pollPrimero());
@@ -40,42 +50,27 @@ public class listaTest {
 
     @Test
     void testAddPrimeroypollPrimero() {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addPrimero("primera");
-        lista.addPrimero("segunda");
-        lista.addPrimero("tercera");
-
-        assertEquals("tercera", lista.pollPrimero());
-        assertEquals("segunda", lista.pollPrimero());
-        assertEquals("primera", lista.pollPrimero());
-        assertNull(lista.pollPrimero());
+    
+        assertEquals("tercera", listaInvertida.pollPrimero());
+        assertEquals("segunda", listaInvertida.pollPrimero());
+        assertEquals("primera", listaInvertida.pollPrimero());
+        assertNull(listaInvertida.pollPrimero());
 
     }
 
     @Test
     void testAddPrimeroypollUltimo() {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addPrimero("primera");
-        lista.addPrimero("segunda");
-        lista.addPrimero("tercera");
-
-        assertEquals("primera", lista.pollUltimo());
-        assertEquals("segunda", lista.pollUltimo());
-        assertEquals("tercera", lista.pollUltimo());
-        assertNull(lista.pollUltimo());
+    
+        assertEquals("primera", listaInvertida.pollUltimo());
+        assertEquals("segunda", listaInvertida.pollUltimo());
+        assertEquals("tercera", listaInvertida.pollUltimo());
+        assertNull(listaInvertida.pollUltimo());
 
     }
 
     @Test
     void testAddIndex() throws Exception {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addUltimo("primera");
-        lista.addUltimo("segunda");
-        lista.addUltimo("tercera");
-
+    
         lista.addIndex(1, "segunda2");
 
         lista.listar();
@@ -89,12 +84,7 @@ public class listaTest {
 
     @Test
     void testPeekPrimero() throws Exception {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addUltimo("primera");
-        lista.addUltimo("segunda");
-        lista.addUltimo("tercera");
-
+    
         lista.addIndex(1, "segunda2");
 
         lista.listar();
@@ -111,12 +101,7 @@ public class listaTest {
 
     @Test
     void testPeekPrimeroFueraRango() throws Exception {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addUltimo("primera");
-        lista.addUltimo("segunda");
-        lista.addUltimo("tercera");
-
+    
         Exception exception = assertThrows(Exception.class, () -> {
             lista.addIndex(5, "segunda5");
         });
@@ -127,12 +112,7 @@ public class listaTest {
 
     @Test
     void testBorrarIndex() throws Exception {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addUltimo("primera");
-        lista.addUltimo("segunda");
-        lista.addUltimo("tercera");
-
+    
         lista.borrarIndex(1);
 
         lista.listar();
@@ -143,12 +123,7 @@ public class listaTest {
 
     @Test
     void testBorrarIndexFueraRango() throws Exception {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addUltimo("primera");
-        lista.addUltimo("segunda");
-        lista.addUltimo("tercera");
-
+    
         Exception exception = assertThrows(Exception.class, () -> {
             lista.borrarIndex(5);
         });
@@ -161,12 +136,7 @@ public class listaTest {
 
     @Test
     void testBorrarLista() throws Exception {
-        ListaEncadenada lista = new ListaEncadenada();
-
-        lista.addUltimo("primera");
-        lista.addUltimo("segunda");
-        lista.addUltimo("tercera");
-
+    
         assertTrue(lista.tamanoLista()==3);
 
         lista.borrarLista();
