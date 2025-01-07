@@ -3,7 +3,6 @@ package es.santander.ascender;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -167,6 +166,8 @@ public class listaTest {
         lista.addUltimo("primera");
         lista.addUltimo("segunda");
         lista.addUltimo("tercera");
+
+        assertTrue(lista.tamanoLista()==3);
 
         lista.borrarLista();
 
