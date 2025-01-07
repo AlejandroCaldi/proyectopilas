@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class listaTestEncadenada {
+public class ListaEncadenadaTest {
 
     ListaEncadenada lista = new ListaEncadenada();
     ListaEncadenada listaInvertida = new ListaEncadenada();
@@ -64,7 +64,8 @@ public class listaTestEncadenada {
         assertEquals("primera", listaInvertida.pollUltimo());
         assertEquals("segunda", listaInvertida.pollUltimo());
         assertEquals("tercera", listaInvertida.pollUltimo());
-        assertNull(listaInvertida.pollUltimo());
+        assertNull(listaInvertida
+        .pollUltimo());
 
     }
 
@@ -79,6 +80,34 @@ public class listaTestEncadenada {
         assertEquals("segunda2", lista.pollPrimero());
         assertEquals("tercera", lista.pollPrimero());
         assertNull(lista.pollPrimero());
+
+    }
+
+    @Test
+    void testAddIndexUltimo() throws Exception {
+    
+        lista.addIndex(2, "segunda2");
+
+        lista.listar();
+        assertEquals("primera", lista.pollPrimero());
+        assertEquals("segunda", lista.pollPrimero());
+        assertEquals("tercera", lista.pollPrimero());
+        assertEquals("segunda2", lista.pollPrimero());
+        assertNull(lista.pollPrimero());
+
+    }
+
+    @Test
+    void testAddIndexNegativo() throws Exception {
+    
+        // lista.addIndex(2, "segunda2");
+
+        // lista.listar();
+        // assertEquals("primera", lista.pollPrimero());
+        // assertEquals("segunda", lista.pollPrimero());
+        // assertEquals("tercera", lista.pollPrimero());
+        // assertEquals("segunda2", lista.pollPrimero());
+        // assertNull(lista.pollPrimero());
 
     }
 
@@ -121,6 +150,8 @@ public class listaTestEncadenada {
         assertNull(lista.pollPrimero());
     }
 
+    // Agregar texts de negativos y último valor de indice
+    
     @Test
     void testBorrarIndexFueraRango() throws Exception {
     
