@@ -44,7 +44,7 @@ public class ListaEncadenada {
                 nodo = nodo.getSiguiente();
                 if (nodo == null) {
                     throw new Exception("Fuera de indice");
-                }
+                } 
                 siguienteViejo = nodo.getSiguiente();
                 contador++;
             }
@@ -81,7 +81,7 @@ public class ListaEncadenada {
 
             nodo.getAnterior().setSiguiente(siguienteViejo);
             nodo.getSiguiente().setAnterior(anteriorViejo);
-            System.gc();
+            //System.gc(); No recomendable. 
 
         }
     }
@@ -89,7 +89,7 @@ public class ListaEncadenada {
     public void borrarLista() {
         this.cima = null; 
         this.raiz = null;
-        System.gc();
+        //System.gc(); No recomendable.
         
     }
 
@@ -99,7 +99,7 @@ public class ListaEncadenada {
         }
         String valor = raiz.getValor();
         raiz = raiz.getSiguiente();
-        System.gc();
+        //System.gc(); remover.
         return valor;
     }
 
@@ -116,7 +116,7 @@ public class ListaEncadenada {
         }
         String valor = cima.getValor();
         cima = cima.getAnterior();
-        System.gc();
+        //System.gc(); remover.
         return valor;
     }
 
